@@ -17,8 +17,8 @@ opts.ExtraColumnsRule = "ignore";
 opts.EmptyLineRule = "read";
 opts.ConsecutiveDelimitersRule = "join";
 opts.LeadingDelimitersRule = "ignore";
-ratesbindingfinale = readtable("rates_binding_finale.csv", opts);
-ratesunbindingfinale = readtable("rates_unbinding_finale.csv", opts);
+ratesbindingfinale = readtable("rates_binding.csv", opts);
+ratesunbindingfinale = readtable("rates_unbinding.csv", opts);
 clear opts
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%for sox9%%%%%%%%%%%%%%%
 ep21=table2array(ratesbindingfinale(:,2));
