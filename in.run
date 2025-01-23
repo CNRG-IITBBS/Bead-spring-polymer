@@ -1,0 +1,89 @@
+#LAMMPS INPUT FILE
+
+#VARIABLES
+variable sd equal 1365
+variable ke equal 0.05000
+
+
+#STYLES
+boundary p p p
+atom_style bond
+#INPUT DATA
+read_data poly.data
+
+neighbor        2.0 bin
+neigh_modify    every 2 delay 2 check yes
+
+bond_style hybrid fene harmonic
+special_bonds fene
+bond_coeff 1 fene 30.0 1.6 1.0000 1.0000
+bond_coeff 2 harmonic $(v_ke*0.9801) 1.000000
+bond_coeff 3 harmonic $(v_ke*0.9025) 1.000000
+bond_coeff 4 harmonic $(v_ke*0.8100) 1.000000
+bond_coeff 5 harmonic $(v_ke*0.7225) 1.000000
+bond_coeff 6 harmonic $(v_ke*0.6400) 1.000000
+bond_coeff 7 harmonic $(v_ke*0.5625) 1.000000
+bond_coeff 8 harmonic $(v_ke*0.4900) 1.000000
+bond_coeff 9 harmonic $(v_ke*0.4225) 1.000000
+bond_coeff 10 harmonic $(v_ke*0.3600) 1.000000
+bond_coeff 11 harmonic $(v_ke*0.3025) 1.000000
+bond_coeff 12 harmonic $(v_ke*0.2500) 1.000000
+pair_style soft 1.12
+pair_coeff * *  10.0
+
+mass *          1.0
+timestep        0.01
+thermo          1000
+thermo_style    custom step pe epair temp
+dump            1 all custom 10000 overlap.lammpstrj id type x y z
+minimize        1.0e-4 1.0e-8 1000 100000
+undump          1
+#equilibrium
+velocity        all create 0.1 ${sd}
+fix             nv all nve/limit 0.01
+fix             2 all langevin 1.0 1.0 1.0 ${sd}
+run             1000000
+unfix           nv
+unfix           2
+
+#SETTINGS
+neighbor        2.0 bin
+neigh_modify    every 2 delay 2 check yes
+
+#FINAL
+bond_style hybrid fene harmonic
+pair_style lj/cut 1.12
+pair_modify shift yes
+special_bonds fene
+bond_coeff 1 fene 30.0 1.6 1.0000 1.0000
+bond_coeff 2 harmonic $(v_ke*0.9801) 1.000000
+bond_coeff 3 harmonic $(v_ke*0.9025) 1.000000
+bond_coeff 4 harmonic $(v_ke*0.8100) 1.000000
+bond_coeff 5 harmonic $(v_ke*0.7225) 1.000000
+bond_coeff 6 harmonic $(v_ke*0.6400) 1.000000
+bond_coeff 7 harmonic $(v_ke*0.5625) 1.000000
+bond_coeff 8 harmonic $(v_ke*0.4900) 1.000000
+bond_coeff 9 harmonic $(v_ke*0.4225) 1.000000
+bond_coeff 10 harmonic $(v_ke*0.3600) 1.000000
+bond_coeff 11 harmonic $(v_ke*0.3025) 1.000000
+bond_coeff 12 harmonic $(v_ke*0.2500) 1.000000
+
+pair_coeff 1 1 1.0000 1.0000 1.12 
+
+#DYNAMICS_SETTUP
+fix nve_fix all nve
+fix lan_fix all langevin 1.0 1.0 1.0 ${sd}
+thermo 1000
+timestep 0.01
+
+#RUN FEW STEPS TO LEAVE INITIAL CONFIGURATION
+run 100000
+
+#SET DUMP
+dump 1 all custom 500 poly_approach_2.lammpstrj id mol type x y z
+
+#DYNAMICS_RUN
+run 10000000
+
+#END
+write_data data_final.cfg nocoeff
