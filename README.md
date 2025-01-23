@@ -41,7 +41,7 @@ The kinetic model calculates gene expression by calculating the cluster size of 
 ### Key Files:
 
 Kinetic_model_sox9_wildtype: MATLAB script implementing the kinetic model.
-rates_binding_finale.csv and rates_unbinding_finale.csv: Enhancer binding and unbinding rates with promoter
+rates_binding.csv and rates_unbinding.csv: Enhancer binding and unbinding rates with promoter
 
 ### Running the Kinetic Model:
 
