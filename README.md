@@ -25,7 +25,7 @@ The Bead-Spring Polymer model simulates the chromatin structure for the 6MB Sox9
 
 in.run: Input file for LAMMPS simulations.
 
-poly.data: Data file containing initial coordinates.
+poly.data: LAMMPS data file.
 
 ### Running the Bead-Spring Polymer Model
 1. Navigate to the project folder.
