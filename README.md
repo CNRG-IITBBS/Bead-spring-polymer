@@ -34,7 +34,7 @@ poly.data: LAMMPS data file.
 
 This command initiates the simulation and redirects the output to the log file for monitoring.
 
-#Analyses files:
+### Analyses files:
 
 distance.f90 to calculate 3D distance and cont_prob.f90 to generate the contact map.
 
