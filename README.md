@@ -34,6 +34,10 @@ poly.data: LAMMPS data file.
 
 This command initiates the simulation and redirects the output to the log file for monitoring.
 
+#Analyses files:
+
+distance.f90 to calculate 3D distance and cont_prob.f90 to generate the contact map.
+
 ### 2. Kinetic Model
 
 The kinetic model calculates gene expression by calculating the cluster size of promoter by modeling the rates of binding and unbinding interactions between enhancers and promoters, as derived from the 3D chromatin structure.
