@@ -6,7 +6,7 @@ variable sd equal 1365
 variable ke equal 0.05
 
 #STYLES
-boundary p p p
+boundary s s s
 atom_style bond
 
 #Read file
