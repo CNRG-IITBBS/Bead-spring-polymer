@@ -2,6 +2,9 @@
 
 This project reconstructs the 3D structure of chromatin from HiC contact maps using a Bead-Spring Polymer model. It also predicts gene expression levels by analyzing enhancer-promoter (E-P) interactions through a kinetic model.
 
+For clarity, go throgh the paper: 
+### Predicting Gene Expression Changes from Chromatin Structure Modification (Npj Systems Biology and Application, 2025)
+
 ## Features
 - Simulates chromatin 3D conformations using a Bead-Spring Polymer model.
 - Computes gene expression based on enhancer-promoter interactions.
